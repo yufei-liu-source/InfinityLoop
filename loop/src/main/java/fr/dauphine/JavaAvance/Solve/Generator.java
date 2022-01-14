@@ -1,6 +1,7 @@
 package fr.dauphine.JavaAvance.Solve;
 
 
+import java.io.IOException;
 import java.util.Random;
 
 import fr.dauphine.JavaAvance.Components.Piece;
@@ -25,7 +26,7 @@ public class Generator {
 	 * @throws FileNotFoundException
 	 * @throws UnsupportedEncodingException
 	 */
-	public static void generateLevel(String fileName, Grid inputGrid) {
+	public static void generateLevel(String fileName, Grid inputGrid)throws IOException{
       
 		// To be implemented
 		if(inputGrid.getNbcc() == -1) {

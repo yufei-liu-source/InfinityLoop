@@ -22,7 +22,7 @@ public enum PieceType {
 	private int nbConn;
 	private int value;
 	
-	private Orientation o;
+	private int possOrientationNb;
 
 	PieceType(int i, int j) {
 		// TODO Auto-generated constructor stub
@@ -57,61 +57,77 @@ public enum PieceType {
 			break;
 		case ONECONN:
 			connectors.add(ori);
+			break;
 		case BAR:
 			switch(ori) {
 			case NORTH:
 				connectors.add(Orientation.NORTH);
-				connectors.add(Orientation.SOUTH);	
+				connectors.add(Orientation.SOUTH);
+				break;
 			case SOUTH:
 				connectors.add(Orientation.SOUTH);	
 				connectors.add(Orientation.NORTH);
+				break;
 			case WEST:
 				connectors.add(Orientation.WEST);	
 				connectors.add(Orientation.EAST);
+				break;
 			case EAST:
 				connectors.add(Orientation.EAST);
-				connectors.add(Orientation.WEST);	
+				connectors.add(Orientation.WEST);
+				break;
 			}
+			break;
 		case TTYPE:
 			switch(ori) {
 			case NORTH:
 				connectors.add(Orientation.NORTH);
 				connectors.add(Orientation.EAST);
 				connectors.add(Orientation.WEST);	
+				break;
 			case SOUTH:
 				connectors.add(Orientation.SOUTH);	
 				connectors.add(Orientation.EAST);
 				connectors.add(Orientation.WEST);	
+				break;
 			case WEST:
 				connectors.add(Orientation.WEST);	
 				connectors.add(Orientation.NORTH);
 				connectors.add(Orientation.SOUTH);
+				break;
 			case EAST:
 				connectors.add(Orientation.EAST);
 				connectors.add(Orientation.NORTH);
 				connectors.add(Orientation.SOUTH);
+				break;
 			}
+			break;
 		case FOURCONN:
 			connectors.add(Orientation.WEST);	
 			connectors.add(Orientation.NORTH);
 			connectors.add(Orientation.SOUTH);
 			connectors.add(Orientation.EAST);
+			break;
 		case LTYPE:
 			switch(ori) {
 			//Take the left side of L to define it's orientation
 			case NORTH:
 				connectors.add(Orientation.NORTH);
 				connectors.add(Orientation.EAST);	
+				break;
 			case SOUTH:
 				connectors.add(Orientation.SOUTH);	
 				connectors.add(Orientation.WEST);
+				break;
 			case WEST:
 				connectors.add(Orientation.WEST);	
 				connectors.add(Orientation.NORTH);
+				break;
 			case EAST:
 				connectors.add(Orientation.EAST);
 				connectors.add(Orientation.SOUTH);	
-			}
+				break;
+			}break;
 		}
 		return connectors;
 	}
@@ -121,18 +137,44 @@ public enum PieceType {
 		ArrayList<Orientation> possibleOrientations = new ArrayList<Orientation>();
 		switch(this) {
 		case VOID:
+			this.possOrientationNb = 0;
 			break;
+			
 		case ONECONN:
-
+			possibleOrientations.add(Orientation.NORTH);
+			possibleOrientations.add(Orientation.EAST);
+			possibleOrientations.add(Orientation.SOUTH);
+			possibleOrientations.add(Orientation.WEST);
+			this.possOrientationNb = 4;
+			break;
+			
 		case BAR:
+			possibleOrientations.add(Orientation.NORTH);
+			possibleOrientations.add(Orientation.EAST);
+			this.possOrientationNb = 2;
+			break;
 			
 		case TTYPE:
-			
+			possibleOrientations.add(Orientation.NORTH);
+			possibleOrientations.add(Orientation.EAST);
+			possibleOrientations.add(Orientation.SOUTH);
+			possibleOrientations.add(Orientation.WEST);
+			this.possOrientationNb = 4;
+			break;
 		case FOURCONN:
+			possibleOrientations.add(Orientation.NORTH);
+			this.possOrientationNb = 1;
+			break;
 			
 		case LTYPE:
+			possibleOrientations.add(Orientation.NORTH);
+			possibleOrientations.add(Orientation.EAST);
+			possibleOrientations.add(Orientation.SOUTH);
+			possibleOrientations.add(Orientation.WEST);
+			this.possOrientationNb = 4;
+			break;
 		}
-		return null;
+		return possibleOrientations;
 		
 	}
 
