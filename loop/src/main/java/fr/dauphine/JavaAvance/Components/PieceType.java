@@ -11,6 +11,6 @@ import java.util.LinkedList;
  */
 public enum PieceType {
 	// Each Type has a number of connectors and a specific value
-	
+
 
 }

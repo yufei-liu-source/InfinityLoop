@@ -11,5 +11,10 @@ public enum Orientation {
 	/* Implement all the possible orientations and 
 	 *  required methods to rotate
 	 */
+	
+	NORTH,
+	SOUTH,
+	WEST,
+	EAST
 
 }
