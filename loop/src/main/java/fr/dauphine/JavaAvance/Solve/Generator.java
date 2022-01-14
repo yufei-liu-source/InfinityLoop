@@ -28,38 +28,32 @@ public class Generator {
 	public static void generateLevel(String fileName, Grid inputGrid) {
       
 		// To be implemented
-		if(inputGrid.getNbcc == -1) {
+		if(inputGrid.getNbcc() == -1) {
 			
-			for (int i=0; i < inputGrid.getHeight(); i++)
-			{
-			    for (int j=0; j < inputGrid.getWidth(); j++)
-			    {
+			for (int i=0; i < inputGrid.getHeight(); i++){
+			    for (int j=0; j < inputGrid.getWidth(); j++){
 			        //if it is a corner
 			    	
-			        if(inputGrid.isCorner(i,j)==True) {
+			        if(inputGrid.isCorner(i,j)==true) {
 			        	
 			        //set the cell , possible pieces are type 0 ,1 or 5
-			        
-			    }
+			        }
 			        
 			        //if it is a borderline or a bordercolumn 
 			        
-			        if(inputGrid.isBorderLine(i,j)==True||inputGrid.isBorderColumn(i,j)==True) {
+			        if(inputGrid.isBorderLine(i,j)==true||inputGrid.isBorderColumn(i,j)==true) {
 			        	//set the cell , possible pieces are type 0,1,2,3,5, except type 4
 			        }
 			       
 			        else {
 			        	// set the cell, possible pieces are all the 5 types 
-			        }
-			        	
-			        }
+			        } 
+			    }
 			}
 		 }
-			else {
+		else {
 				
 			}
-		}
-		
 	}
 	public static int[] copyGrid(Grid filledGrid, Grid inputGrid, int i, int j) {
 		Piece p;

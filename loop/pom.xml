@@ -46,7 +46,7 @@
         <archive>
           <manifest>
             <addClasspath>true</addClasspath>
-            <mainClass>fr.dauphine.javaavance.main.Main</mainClass>
+            <mainClass>fr.dauphine.JavaAvance.Main.Main</mainClass>
           </manifest>
         </archive>
       </configuration>
