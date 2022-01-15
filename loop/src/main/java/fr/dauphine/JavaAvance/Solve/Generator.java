@@ -26,7 +26,11 @@ public class Generator {
 	 * @throws FileNotFoundException
 	 * @throws UnsupportedEncodingException
 	 */
-	public static void generateLevel(String fileName, Grid inputGrid)throws IOException{
+
+	
+	      
+	public static void generateLevel(String fileName, Grid inputGrid) {
+
       
 		// To be implemented
 		if(inputGrid.getNbcc() == -1) {			
@@ -50,9 +54,11 @@ public class Generator {
 			    }
 			}
 		 }
-		else {
+
 		}
 	}
+
+
 	public static int[] copyGrid(Grid filledGrid, Grid inputGrid, int i, int j) {
 		Piece p;
 		int hmax = inputGrid.getHeight();
