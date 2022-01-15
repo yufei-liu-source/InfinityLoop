@@ -25,6 +25,26 @@ public class Generator {
 	 * @throws FileNotFoundException
 	 * @throws UnsupportedEncodingException
 	 */
+	
+	public static void main(String[] args) throws IOException {
+		
+		BufferedReader reader = new BufferedReader(
+	            new InputStreamReader(System.in));
+		
+		String input = reader.readLine();
+		
+	    
+	    int width = Integer.parseInt(input[8]);
+	    int height = Integer.parseInt(input[10]);
+	    
+	    Grid inputGrid = new Grid(width,height);
+	    
+	    
+
+	 }
+	
+	
+	      
 	public static void generateLevel(String fileName, Grid inputGrid) {
       
 		// To be implemented
@@ -55,12 +75,15 @@ public class Generator {
 			        }
 			}
 		 }
+		//case where there are connected component
 			else {
 				
 			}
 		}
 		
 	}
+
+
 	public static int[] copyGrid(Grid filledGrid, Grid inputGrid, int i, int j) {
 		Piece p;
 		int hmax = inputGrid.getHeight();
