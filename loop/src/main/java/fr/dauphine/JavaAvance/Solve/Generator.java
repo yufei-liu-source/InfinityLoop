@@ -12,41 +12,6 @@ import fr.dauphine.JavaAvance.GUI.Grid;
  * Generate a solution, number of connexe composant is not finished
  *
  */
-	public static void main(String[] args) throws IOException {
-		
-		BufferedReader reader = new BufferedReader(
-	            new InputStreamReader(System.in));
-		
-		String input = reader.readLine();
-		
-	    
-	    int width = Integer.parseInt(input[8]);
-	    int height = Integer.parseInt(input[10]);
-	    
-	    Grid inputGrid = new Grid(width,height);
-	    
-	    Path file = Paths.get(fileName);
-	    try {
-	        // Create the empty file 
-	        Files.createFile(file);
-	        
-	    } catch (FileAlreadyExistsException x) {
-	        System.err.format("file named %s" +
-	            " already exists%n", file);
-	    } catch (IOException x) {
-	        
-	        System.err.format("createFile error: %s%n", x);
-	    }
-	    
-	    try (BufferedWriter bw = Files.newBufferedWriter(file,
-                StandardOpenOption.CREATE_NEW)) {
-            bw.write(width.toString());
-            bw.newLine();
-            bw.write(height.);
-            bw.newLine();
-            
-        }
-
 public class Generator {
 
 	private static Grid filledGrid;
@@ -61,11 +26,7 @@ public class Generator {
 	 * @throws UnsupportedEncodingException
 	 */
 
-	
-	      
 	public static void generateLevel(String fileName, Grid inputGrid) {
-
-      
 		// To be implemented
 		if(inputGrid.getNbcc() == -1) {			
 			for (int i=0; i < inputGrid.getHeight(); i++){

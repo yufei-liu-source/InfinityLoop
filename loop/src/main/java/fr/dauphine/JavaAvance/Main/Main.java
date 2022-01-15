@@ -28,7 +28,7 @@ public class Main {
 	private static Integer nbThread = 1;
 	private static Integer algo = 2;
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		Options options = new Options();
         CommandLineParser parser = new DefaultParser();
         CommandLine cmd = null;
@@ -83,7 +83,9 @@ public class Main {
             
             // load grid from inputFile and check if it is solved... 
             //...
-            System.out.println("SOLVED: " + solved);           
+            Checker c = new Checker(inputFile, solved);
+            c.generateCheckLevel();
+            System.out.println("SOLVED: " + c.checkLevel());           
         }
         else {
             throw new ParseException("You must specify at least one of the following options: -generate -check -solve ");           
