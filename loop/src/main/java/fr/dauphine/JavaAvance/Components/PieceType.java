@@ -21,8 +21,6 @@ public enum PieceType {
 	
 	private int nbConn;
 	private int value;
-	
-	private int possOrientationNb;
 
 	PieceType(int i, int j) {
 		// TODO Auto-generated constructor stub
@@ -132,48 +130,15 @@ public enum PieceType {
 		return connectors;
 	}
 
-	ArrayList<Orientation> getListOfPossibleOri() {
+	public ArrayList<Orientation> getListOfPossibleOri() {
 		// TODO Auto-generated method stub
 		ArrayList<Orientation> possibleOrientations = new ArrayList<Orientation>();
-		switch(this) {
-		case VOID:
-			this.possOrientationNb = 0;
-			break;
-			
-		case ONECONN:
-			possibleOrientations.add(Orientation.NORTH);
-			possibleOrientations.add(Orientation.EAST);
-			possibleOrientations.add(Orientation.SOUTH);
-			possibleOrientations.add(Orientation.WEST);
-			this.possOrientationNb = 4;
-			break;
-			
-		case BAR:
-			possibleOrientations.add(Orientation.NORTH);
-			possibleOrientations.add(Orientation.EAST);
-			this.possOrientationNb = 2;
-			break;
-			
-		case TTYPE:
-			possibleOrientations.add(Orientation.NORTH);
-			possibleOrientations.add(Orientation.EAST);
-			possibleOrientations.add(Orientation.SOUTH);
-			possibleOrientations.add(Orientation.WEST);
-			this.possOrientationNb = 4;
-			break;
-		case FOURCONN:
-			possibleOrientations.add(Orientation.NORTH);
-			this.possOrientationNb = 1;
-			break;
-			
-		case LTYPE:
-			possibleOrientations.add(Orientation.NORTH);
-			possibleOrientations.add(Orientation.EAST);
-			possibleOrientations.add(Orientation.SOUTH);
-			possibleOrientations.add(Orientation.WEST);
-			this.possOrientationNb = 4;
-			break;
-		}
+
+		possibleOrientations.add(Orientation.NORTH);
+		possibleOrientations.add(Orientation.EAST);
+		possibleOrientations.add(Orientation.SOUTH);
+		possibleOrientations.add(Orientation.WEST);
+
 		return possibleOrientations;
 		
 	}

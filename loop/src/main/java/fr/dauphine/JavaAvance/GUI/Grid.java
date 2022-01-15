@@ -151,7 +151,7 @@ public class Grid {
 	}
 
 	/**
-	 * Check if a piece has a fixed neighbor for each one of its connecotrs
+	 * Check if a piece has a fixed neighbor for each one of its connectors
 	 * 
 	 * @param p
 	 *            the piece

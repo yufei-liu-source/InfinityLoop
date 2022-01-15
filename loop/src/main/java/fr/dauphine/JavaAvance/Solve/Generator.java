@@ -29,12 +29,10 @@ public class Generator {
 	public static void generateLevel(String fileName, Grid inputGrid)throws IOException{
       
 		// To be implemented
-		if(inputGrid.getNbcc() == -1) {
-			
+		if(inputGrid.getNbcc() == -1) {			
 			for (int i=0; i < inputGrid.getHeight(); i++){
 			    for (int j=0; j < inputGrid.getWidth(); j++){
-			        //if it is a corner
-			    	
+			        //if it is a corner		    	
 			        if(inputGrid.isCorner(i,j)==true) {
 			        	
 			        //set the cell , possible pieces are type 0 ,1 or 5
@@ -53,8 +51,7 @@ public class Generator {
 			}
 		 }
 		else {
-				
-			}
+		}
 	}
 	public static int[] copyGrid(Grid filledGrid, Grid inputGrid, int i, int j) {
 		Piece p;
