@@ -1,9 +1,11 @@
 package fr.dauphine.JavaAvance.Solve;
 
 
-import java.io.IOException;
-import java.util.Random;
+import java.io.*;
+import java.nio.file.*;
+import java.util.*;
 
+import fr.dauphine.JavaAvance.Components.Orientation;
 import fr.dauphine.JavaAvance.Components.Piece;
 import fr.dauphine.JavaAvance.Components.PieceType;
 import fr.dauphine.JavaAvance.GUI.Grid;
@@ -27,9 +29,8 @@ public class Generator {
 	 */
 
 	      
-	public static void generateLevel(String fileName, Grid inputGrid) {
+	public static void generateLevel(String fileName, Grid inputGrid) throws IOException {
 		//different random for Corner and Border situation
-		Piece p;
 		Random random = new Random();
 		
 		List<PieceType> listC = new ArrayList<PieceType>();
@@ -45,7 +46,6 @@ public class Generator {
     	listB.add(PieceType.LTYPE);
     	
     	//create the output file and write in this file
-    	
     	Path file = Paths.get(fileName);
  	    try {
  	        // Create the empty file 
@@ -58,19 +58,20 @@ public class Generator {
  	        
  	        System.err.format("createFile error: %s%n", x);
  	    }
- 	    
- 	    try (BufferedWriter bw = Files.newBufferedWriter(file,
-                 StandardOpenOption.CREATE_NEW)) {
-             bw.write(width.toString());
-             bw.newLine();
-             bw.write(height.);
-             bw.newLine();
-               
-         }
- 	   
-    	
-    	
-		
+ 	    int width = inputGrid.getWidth();
+ 	    int height = inputGrid.getHeight();
+ 	    BufferedWriter bw = Files.newBufferedWriter(file,StandardOpenOption.CREATE_NEW);
+ 	    try {
+ 	 	    bw.write(Integer.toString(width));
+ 	 	    bw.newLine();
+ 	 	    bw.write(Integer.toString(height)); 
+			bw.newLine();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+        
+
 		if(inputGrid.getNbcc() == -1) {			
 			for (int i=0; i < inputGrid.getHeight(); i++){
 			    for (int j=0; j < inputGrid.getWidth(); j++){
@@ -78,45 +79,54 @@ public class Generator {
 			        if(inputGrid.isCorner(i,j)==true) {
 			        	
 			        //set the cell , possible pieces are type 0 ,1 or 5
-			        	PieceType ptC = listC[Math.floor(Math.random()*listC.length)];
-			        	Orientation orientation = Orientation.values()[random.nextInt(Orientation.values().length)];
-			        	Piece p = inputGrid.getPiece(i,j);
-			        	inputGrid.setPiece(i,j,new Piece(i,j,ptC,orientation)));
-			        	bw.write(p.ptC.getValue(),p.orientation.getValue());
-			        	bw.newLine();
+			        	PieceType ptC = listC.get(new Random().nextInt(listC.size())) ;
+			        	Orientation orientation = Orientation.values()[random.nextInt(4)];
 			        	
-			    
-			        	
+			        	inputGrid.setPiece(i, j, new Piece(i, j, ptC, orientation));
+			        	try {
+			        		bw.write(ptC.getValue()+ "," + orientation.getValue());
+							bw.newLine();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 			        }
 			        
 			        //if it is a borderline or a bordercolumn 
 			        
 			        if(inputGrid.isBorderLine(i,j)==true||inputGrid.isBorderColumn(i,j)==true) {
 			        	//set the cell , possible pieces are type 0,1,2,3,5, except type 4
-			        	PieceType ptB = listB[Math.floor(Math.random()*listB.length)];
-			        	Orientation orientation = Orientation.values()[random.nextInt(Orientation.values().length)];
-			        	Piece p = inputGrid.getPiece(i,j);
-			        	inputGrid.setPiece(i,j,new Piece(i,j,ptB,orientation)));
-			        	bw.write(p.ptB.getValue(),p.orientation.getValue());
-			        	bw.newLine();
+			        	PieceType ptB = listB.get(new Random().nextInt(listB.size())) ;
+			        	Orientation orientation2 = Orientation.values()[random.nextInt(4)];
+
+			        	inputGrid.setPiece(i, j, new Piece(i, j, ptB, orientation2));
+			        	try {
+							bw.write(ptB.getValue()+ "," + orientation2.getValue());
+							bw.newLine();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+			        	
 			        }
-			       
 			        else {
 			        	// set the cell, possible pieces are all the 5 types 
 			        	PieceType type = PieceType.values()[random.nextInt(PieceType.values().length)];
-			        	Orientation orientation = Orientation.values()[random.nextInt(Orientation.values().length)];
-			        	Piece p = inputGrid.getPiece(i,j);
-			        	inputGrid.setPiece(i,j,new Piece(i,j,type,orientation)));
-			        	bw.write(p.type.getValue(),p.orientation.getValue());
-			        	bw.newLine();
+			        	Orientation orientation3 = Orientation.values()[random.nextInt(4)];
 			        	
-			        	
+			        	inputGrid.setPiece(i, j, new Piece(i, j, type, orientation3));
+			        	try {
+							bw.write(type.getValue() + orientation3.getValue());
+							bw.newLine();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+			        }
 			    }
 			}
-		 }
+		}
 	}
-		
- }
 
 
 	public static int[] copyGrid(Grid filledGrid, Grid inputGrid, int i, int j) {

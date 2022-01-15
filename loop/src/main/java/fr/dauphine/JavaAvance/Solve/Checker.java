@@ -1,11 +1,11 @@
 package fr.dauphine.JavaAvance.Solve;
 
 import java.io.IOException;
-import java.net.URI;
+//import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Iterator;
+//import java.util.Iterator;
 import java.util.List;
 
 import fr.dauphine.JavaAvance.Components.Piece;
@@ -25,7 +25,7 @@ public class Checker {
 	
 	public Checker(String input, boolean solved) throws IOException{
 		super();
-		this.inputFile = Paths.get(input, null);
+		this.inputFile = Paths.get(input);
 		this.solved = solved;
 		if(!Files.isReadable(this.inputFile) || !Files.isDirectory(this.inputFile)) {
 			throw new IOException ("Invalid file!");
@@ -62,6 +62,11 @@ public class Checker {
 		}
 	}
 	
+	/***
+	 * check if all the pieces in the grid are connected
+	 * 
+	 * @return true if connected or false if any of it is not connected
+	 */
 	public boolean checkLevel() {
 		int validPiece = 0;
 		for(int x = 0; x < h ; x++) {

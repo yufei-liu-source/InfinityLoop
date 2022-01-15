@@ -158,8 +158,7 @@ public enum PieceType {
 			possibleOrientations.add(Orientation.WEST);
 			break;
 		case FOURCONN:
-			//fourconn piece has 1 possible rotations in 1 orientations
-			possibleOrientations.add(Orientation.NORTH);
+			//fourconn piece has 0 possible rotations in 1 orientations
 			break;
 		case LTYPE:
 			//ltype piece has 4 possible rotations in 4 orientations
