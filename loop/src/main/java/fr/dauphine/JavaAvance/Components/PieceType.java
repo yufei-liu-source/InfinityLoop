@@ -13,11 +13,11 @@ public enum PieceType {
 	// Each Type has a number of connectors and a specific value
 
 	VOID(0,0),
-	ONECONN(1,1),
-	BAR(2,2),
-	TTYPE(3,3),
+	ONECONN(1,1), //oneconn's orientation is the direction pointed by its straight part
+	BAR(2,2), 
+	TTYPE(3,3), //ttype's orientation is the direction pointed by its vertical part
 	FOURCONN(4,4),
-	LTYPE(2,5);
+	LTYPE(2,5); // ltype's orientation is the direction pointed by its left side
 	
 	private int nbConnectors;
 	private int value;
@@ -133,11 +133,42 @@ public enum PieceType {
 	public ArrayList<Orientation> getListOfPossibleOri() {
 		// TODO Auto-generated method stub
 		ArrayList<Orientation> possibleOrientations = new ArrayList<Orientation>();
-
-		possibleOrientations.add(Orientation.NORTH);
-		possibleOrientations.add(Orientation.EAST);
-		possibleOrientations.add(Orientation.SOUTH);
-		possibleOrientations.add(Orientation.WEST);
+	
+		switch(this) {
+		case VOID:
+			// empty piece has no possible rotation 
+			break;
+		case ONECONN:
+			// oneconn piece has 4 possible rotations in 4 orientations
+			possibleOrientations.add(Orientation.NORTH);
+			possibleOrientations.add(Orientation.EAST);
+			possibleOrientations.add(Orientation.SOUTH);
+			possibleOrientations.add(Orientation.WEST);
+			break;
+		case BAR:
+			// bar piece has 2 possible rotations in 2 orientations
+			possibleOrientations.add(Orientation.NORTH);
+			possibleOrientations.add(Orientation.EAST);
+			break;
+		case TTYPE:
+			//ttype piece has 4 possible rotations in 4 orientations
+			possibleOrientations.add(Orientation.NORTH);
+			possibleOrientations.add(Orientation.EAST);
+			possibleOrientations.add(Orientation.SOUTH);
+			possibleOrientations.add(Orientation.WEST);
+			break;
+		case FOURCONN:
+			//fourconn piece has 1 possible rotations in 1 orientations
+			possibleOrientations.add(Orientation.NORTH);
+			break;
+		case LTYPE:
+			//ltype piece has 4 possible rotations in 4 orientations
+			possibleOrientations.add(Orientation.NORTH);
+			possibleOrientations.add(Orientation.EAST);
+			possibleOrientations.add(Orientation.SOUTH);
+			possibleOrientations.add(Orientation.WEST);
+			break;
+		}
 
 		return possibleOrientations;
 		
