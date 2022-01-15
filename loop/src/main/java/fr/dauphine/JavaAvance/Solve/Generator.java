@@ -26,8 +26,51 @@ public class Generator {
 	 * @throws UnsupportedEncodingException
 	 */
 
+	      
 	public static void generateLevel(String fileName, Grid inputGrid) {
-		// To be implemented
+		//different random for Corner and Border situation
+		Piece p;
+		Random random = new Random();
+		
+		List<PieceType> listC = new ArrayList<PieceType>();
+    	listC.add(PieceType.VOID);
+    	listC.add(PieceType.ONECONN);
+    	listC.add(PieceType.LTYPE);
+    	
+    	List<PieceType> listB = new ArrayList<PieceType>();
+    	listB.add(PieceType.VOID);
+    	listB.add(PieceType.ONECONN);
+    	listB.add(PieceType.BAR);
+    	listB.add(PieceType.TTYPE);
+    	listB.add(PieceType.LTYPE);
+    	
+    	//create the output file and write in this file
+    	
+    	Path file = Paths.get(fileName);
+ 	    try {
+ 	        // Create the empty file 
+ 	        Files.createFile(file);
+ 	        
+ 	    } catch (FileAlreadyExistsException x) {
+ 	        System.err.format("file named %s" +
+ 	            " already exists%n", file);
+ 	    } catch (IOException x) {
+ 	        
+ 	        System.err.format("createFile error: %s%n", x);
+ 	    }
+ 	    
+ 	    try (BufferedWriter bw = Files.newBufferedWriter(file,
+                 StandardOpenOption.CREATE_NEW)) {
+             bw.write(width.toString());
+             bw.newLine();
+             bw.write(height.);
+             bw.newLine();
+               
+         }
+ 	   
+    	
+    	
+		
 		if(inputGrid.getNbcc() == -1) {			
 			for (int i=0; i < inputGrid.getHeight(); i++){
 			    for (int j=0; j < inputGrid.getWidth(); j++){
@@ -35,21 +78,45 @@ public class Generator {
 			        if(inputGrid.isCorner(i,j)==true) {
 			        	
 			        //set the cell , possible pieces are type 0 ,1 or 5
+			        	PieceType ptC = listC[Math.floor(Math.random()*listC.length)];
+			        	Orientation orientation = Orientation.values()[random.nextInt(Orientation.values().length)];
+			        	Piece p = inputGrid.getPiece(i,j);
+			        	inputGrid.setPiece(i,j,new Piece(i,j,ptC,orientation)));
+			        	bw.write(p.ptC.getValue(),p.orientation.getValue());
+			        	bw.newLine();
+			        	
+			    
+			        	
 			        }
 			        
 			        //if it is a borderline or a bordercolumn 
 			        
 			        if(inputGrid.isBorderLine(i,j)==true||inputGrid.isBorderColumn(i,j)==true) {
 			        	//set the cell , possible pieces are type 0,1,2,3,5, except type 4
+			        	PieceType ptB = listB[Math.floor(Math.random()*listB.length)];
+			        	Orientation orientation = Orientation.values()[random.nextInt(Orientation.values().length)];
+			        	Piece p = inputGrid.getPiece(i,j);
+			        	inputGrid.setPiece(i,j,new Piece(i,j,ptB,orientation)));
+			        	bw.write(p.ptB.getValue(),p.orientation.getValue());
+			        	bw.newLine();
 			        }
 			       
 			        else {
 			        	// set the cell, possible pieces are all the 5 types 
-			        } 
+			        	PieceType type = PieceType.values()[random.nextInt(PieceType.values().length)];
+			        	Orientation orientation = Orientation.values()[random.nextInt(Orientation.values().length)];
+			        	Piece p = inputGrid.getPiece(i,j);
+			        	inputGrid.setPiece(i,j,new Piece(i,j,type,orientation)));
+			        	bw.write(p.type.getValue(),p.orientation.getValue());
+			        	bw.newLine();
+			        	
+			        	
 			    }
 			}
 		 }
 	}
+		
+ }
 
 
 	public static int[] copyGrid(Grid filledGrid, Grid inputGrid, int i, int j) {
