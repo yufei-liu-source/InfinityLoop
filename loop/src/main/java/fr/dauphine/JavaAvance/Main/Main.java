@@ -85,7 +85,7 @@ public class Main {
             //...
             Checker c = new Checker(inputFile, solved);
             c.generateCheckLevel();
-            System.out.println("SOLVED: " + c.checkLevel());           
+            System.out.println("SOLVED: " + c.isSolution());           
         }
         else {
             throw new ParseException("You must specify at least one of the following options: -generate -check -solve ");           

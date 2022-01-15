@@ -67,7 +67,7 @@ public class Checker {
 	 * 
 	 * @return true if connected or false if any of it is not connected
 	 */
-	public boolean checkLevel() {
+	public boolean isSolution() {
 		int validPiece = 0;
 		for(int x = 0; x < h ; x++) {
 			for(int y = 0; y < w ; y++) {
