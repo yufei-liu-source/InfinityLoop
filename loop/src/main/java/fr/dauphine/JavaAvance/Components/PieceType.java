@@ -19,21 +19,21 @@ public enum PieceType {
 	FOURCONN(4,4),
 	LTYPE(2,5);
 	
-	private int nbConn;
+	private int nbConnectors;
 	private int value;
 
 	PieceType(int i, int j) {
 		// TODO Auto-generated constructor stub
-		this.nbConn = i;
+		this.nbConnectors = i;
 		this.value = j;
 	}
 
-	public int getNbConn() {
-		return nbConn;
+	public void setNbConnectors(int nbConnectors) {
+		this.nbConnectors = nbConnectors;
 	}
 
-	public void setNbConn(int nbConn) {
-		this.nbConn = nbConn;
+	public int getNbConnectors() {
+		return nbConnectors;
 	}
 
 	public int getValue() {
@@ -155,7 +155,4 @@ public enum PieceType {
 		}
 		return null;
 	}
-	
-
-
 }

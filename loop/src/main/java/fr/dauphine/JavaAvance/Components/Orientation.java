@@ -73,8 +73,18 @@ public enum Orientation {
 		return oppoCoordinates;
 	}
 
-	Orientation getOpposedOrientation() {
-		// TODO Auto-generated method stub
+	public Orientation getOpposedOrientation() {
+		// return the opposed orientation of the actual orientation
+		switch(this) {
+		case NORTH:
+			return SOUTH;
+		case EAST:
+			return WEST;
+		case SOUTH:
+			return NORTH;
+		case WEST:
+			return EAST;
+		}
 		return null;
 	}
 
